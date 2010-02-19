@@ -50,8 +50,8 @@ function.
     import ( "fmt" "makengo" )
 
     func init() {
-    	    Describe("Print hello.")
-	    Task("Hello", func() { fmt.Println("Hello!") })
+            Describe("Print hello.")
+            Task("Hello", func() { fmt.Println("Hello!") })
     }
 
 # Tasks execution and command-line
