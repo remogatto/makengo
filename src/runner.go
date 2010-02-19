@@ -43,7 +43,11 @@ func (self *runner) Run() {
 		return
 	}
 
-	TaskManager.InvokeByName(flag.Args())
+	if len(flag.Args()) > 0 {
+		TaskManager.InvokeByName(flag.Args())
+	} else {
+		TaskManager.InvokeByName([]string{ "Default" })
+	}
 }
 
 

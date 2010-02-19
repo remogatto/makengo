@@ -84,6 +84,10 @@ func init() {
 			e.Value(value).Should(Be("barfoobiz"))
 		})
 
+		It("should not invoke the task if the block argument is nil", func(e Example) {
+			t.Task("TestTask", nil).Invoke()
+		})
+
 		
 	})
 
@@ -105,7 +109,10 @@ func init() {
 
 	Describe("task.Default", func() {
 		
-		It("should define a default task", nil)
+		It("should define a default task", func(e Example) {
+			t.Task("NewTask", func() {})
+			t.Default("NewTask")
+		})
 
 	})
 

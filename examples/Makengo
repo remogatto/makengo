@@ -24,6 +24,7 @@ func init() {
 		fmt.Println("task_2 has finished")
 	})
 
+        Default("joe")
 }
 
 
