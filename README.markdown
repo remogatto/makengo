@@ -14,7 +14,7 @@ or better to fork it and send me patches ;)
 
 # Quick start
 
-    $ git clone 
+    $ git clone http://github.com/remogatto/makengo
     $ cd makengo
     $ make install
 
@@ -47,7 +47,11 @@ function.
 ## Makengo file example
 
     package main
-    import ( "fmt" "makengo" )
+
+    import ( 
+             "fmt" 
+             . "makengo" 
+    )
 
     func init() {
             Describe("Print hello.")
