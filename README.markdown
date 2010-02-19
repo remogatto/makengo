@@ -1,5 +1,7 @@
-Makengo (make'n go) is a build program written in go and inspired to
+<tt>Makengo</tt> (make'n go) is a build program written in go and inspired to
 ruby rake.
+
+# Preamble
 
 When I switched from ruby to go there was a thing I particularly
 missed: a build program à la rake. So, I decided to make an attempt
@@ -12,30 +14,30 @@ or better to fork it ;)
 
 # Quick start
 
-  $ git clone 
-  $ cd makengo
-  $ make install
+    $ git clone 
+    $ cd makengo
+    $ make install
 
 # The DSL
 
 ## Define a simple task without dependencies
 
-  Task("Hello", func() { fmt.Println("Hello!") })
+    Task("Hello", func() { fmt.Println("Hello!") })
 
 ## Define two dependent tasks (order of definition doesn't matter)
 
-  Task("Joe", func() { fmt.Println("Joe") })
-  Task("Hello", func() { fmt.Println("Hello ") }).DependsOn("Joe")
+    Task("Joe", func() { fmt.Println("Joe") })
+    Task("Hello", func() { fmt.Println("Hello ") }).DependsOn("Joe")
 
 ## Add descriptions to tasks
 
-  Describe("Print hello.")
-  Task("Hello", func() { fmt.Println("Hello!") })
+    Describe("Print hello.")
+    Task("Hello", func() { fmt.Println("Hello!") })
 
 ## Define a default task among a set of defined tasks (not yet implemented)
 
-  Task("Hello", func() { fmt.Println("Hello!") })
-  Default("Hello")
+    Task("Hello", func() { fmt.Println("Hello!") })
+    Default("Hello")
 
 # Makengo file
 
@@ -44,22 +46,22 @@ function.
 
 ## Makengo file example
 
-  package main
-  import ( "fmt" "makengo" )
+    package main
+    import ( "fmt" "makengo" )
 
-  func init() {
-  	  Describe("Print hello.")
-	  Task("Hello", func() { fmt.Println("Hello!") })
-  }
+    func init() {
+    	    Describe("Print hello.")
+	    Task("Hello", func() { fmt.Println("Hello!") })
+    }
 
 # Tasks execution and command-line
 
 Tasks are invoked using makengo executable:
 
-  $ makengo # Run the default task if any
-  $ makengo Hello # Output "Hello!"
-  $ makengo Hello Joe # Output "Hello Joe"
-  $ makengo -T # Show task descriptions
+    $ makengo # Run the default task if any
+    $ makengo Hello # Output "Hello!"
+    $ makengo Hello Joe # Output "Hello Joe"
+    $ makengo -T # Show task descriptions
 
 # Concurrency
 
