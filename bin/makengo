@@ -1,0 +1,73 @@
+#!/bin/bash
+
+while [ $# -ne 0 ]; do
+    param=$1
+    shift
+    case $param in
+        -I) lib=$1 ; libs="$libs -I$lib"; shift ;;
+        *) files="$files $param"
+    esac
+done
+
+downcase()
+{
+    tr [[:upper:]] [[:lower:]]
+}
+
+find_os()
+{
+    uname -s | downcase
+}
+
+find_arch()
+{ 
+    case `uname -p` in
+        i386) echo "386" ;;
+        x86_64) echo "amd64" ;;
+        *) echo $1
+    esac
+}
+
+default_o()
+{
+    case $1 in
+        amd64) echo 6 ;;
+        arm) echo 7 ;;
+        386) echo 8 ;;
+    esac
+}
+
+[ x$GOROOT == 'x' ] && GOROOT=$HOME/go
+[ x$GOOS == 'x' ] && GOOS=$(find_os)
+[ x$GOARCH == 'x' ] && GOARCH=$(find_arch)
+[ x$O == 'x' ] && O=$(default_o $GOARCH)
+[ x$GC == 'x' ] && GC=${O}g
+[ x$LD == 'x' ] && LD=${O}l
+
+create_main() {
+    cat > _makengo_.go <<EOF
+package main
+
+import "makengo"
+
+var runner = makengo.NewRunner()
+
+func main() {
+    runner.Run()
+}
+EOF
+}
+
+run() {
+    $GC -o _makengo_.$O $libs _makengo_.go Makengo\
+        && $LD _makengo_.$O \
+        && ./$O.out $files
+}
+
+clean() {
+    rm _makengo_.* $O.out
+}
+
+create_main
+GOROOT=$GOROOT GOOS=$GOOS GOARCH=$GOARCH run
+clean
