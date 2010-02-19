@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	Describe("task.Task", func() {
+	Describe("makengo.Task", func() {
 		
 		It("should add a new task", func(e Example) {
 			t.Task("NewTask", func() {})
@@ -91,7 +91,7 @@ func init() {
 		
 	})
 
-	Describe("task.Describe", func() {
+	Describe("makengo.Describe", func() {
 		
 		It("should associate the given description to the task", func(e Example) {
 
@@ -107,7 +107,7 @@ func init() {
 
 	})
 
-	Describe("task.Default", func() {
+	Describe("makengo.Default", func() {
 		
 		It("should define a default task", func(e Example) {
 			t.Task("NewTask", func() {})
