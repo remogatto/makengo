@@ -1,16 +1,16 @@
-<tt>Makengo</tt> (make'n go) is a build program written in go and inspired to
-ruby rake.
+<tt>Makengo</tt> (make'n go) is a build program written in <tt>go</tt>
+and inspired to <tt>ruby</tt> <tt>rake</tt>.
 
 # Preamble
 
-When I switched from ruby to go there was a thing I particularly
-missed: a build program à la rake. So, I decided to make an attempt
-trying to roughly reproduce rake's dsl in go and I ended up with what
-follows.
+When I switched from <tt>ruby</tt> to <tt>go</tt> there was a thing I
+particularly missed: a build program à la <tt>rake</tt>. So, I decided
+to make an attempt trying to roughly reproduce <tt>rake</tt>'s DSL in
+<tt>go</tt> and I ended up with what follows.
 
 Please note that this software is in an early alpha stage of
 development. If you find it interesting feel free to send me feedbacks
-or better to fork it ;)
+or better to fork it and send me patches ;)
 
 # Quick start
 
@@ -59,9 +59,10 @@ function.
 Tasks are invoked using makengo executable:
 
     $ makengo # Run the default task if any
-    $ makengo Hello # Output "Hello!"
-    $ makengo Hello Joe # Output "Hello Joe"
+    $ makengo Hello # Run "Hello" task
+    $ makengo Hello Joe # Run "Hello" and "Joe" tasks
     $ makengo -T # Show task descriptions
+    $ makengo -h # Show usage information
 
 # Concurrency
 
@@ -73,5 +74,8 @@ is exploited following these rules:
 2. If task1 depends on (task2, task3) and (task2, task3) are independent 
 tasks then (task2, task3) run concurrently and task1 waits for (task2, 
 task3) to finish their job.
+
+# LICENSE
+
 
 
