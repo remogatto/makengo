@@ -8,10 +8,10 @@ import (
 
 func init() {
 
-	Describe("Print Hello")
+	Desc("Print Hello")
 	Task("hello", func() { fmt.Print("Hello ") })
 
-	Describe("Print Hello Joe!")
+	Desc("Print Hello Joe!")
 	Task("joe", func() { fmt.Println("Joe!") }).DependsOn("hello")
 
 	Task("task_1", func() {

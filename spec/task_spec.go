@@ -88,10 +88,10 @@ func init() {
 
 		It("should associate the given description to the task", func(e Example) {
 
-			t.Describe("A nice task")
+			t.Desc("A nice task")
 			e.Value(t.Task("NewTask", func() {}).Description).Should(Be("A nice task"))
 
-			t.Describe("Yet another nice task")
+			t.Desc("Yet another nice task")
 			e.Value(t.Task("NewTask 2", func() {}).Description).Should(Be("Yet another nice task"))
 
 			e.Value(t.Task("NewTask 3", func() {}).Description).Should(Be(""))

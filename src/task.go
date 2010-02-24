@@ -56,7 +56,7 @@ func (self *task) Invoke() *task {
 
 func init() { TaskManager = make(taskmanager) }
 
-func Describe(desc string) { lastDescription = desc }
+func Desc(desc string) { lastDescription = desc }
 
 func Task(name string, block func()) *task {
 
