@@ -1,6 +1,6 @@
 package makengo
 
-type taskmanager map [string] *task
+type taskmanager map[string]*task
 
 func (self taskmanager) InvokeByName(tasknames []string) {
 	ok := make(chan bool)

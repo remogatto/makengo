@@ -24,7 +24,6 @@ SPECIFY=specify
 all: test
 
 clean:
-	find -name "*~" | xargs rm
 	cd src; make clean
 
 format:

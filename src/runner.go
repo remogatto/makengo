@@ -7,7 +7,7 @@ import (
 )
 
 type runner struct {
-	usage func()	
+	usage func()
 }
 
 func NewRunner() *runner {
@@ -17,7 +17,7 @@ func NewRunner() *runner {
 		flag.PrintDefaults()
 	}
 
-	return &runner{ usage: custom_usage }
+	return &runner{usage: custom_usage}
 }
 
 func (self *runner) Run() {
@@ -46,9 +46,6 @@ func (self *runner) Run() {
 	if len(flag.Args()) > 0 {
 		TaskManager.InvokeByName(flag.Args())
 	} else {
-		TaskManager.InvokeByName([]string{ "Default" })
+		TaskManager.InvokeByName([]string{"Default"})
 	}
 }
-
-
-

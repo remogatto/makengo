@@ -8,20 +8,16 @@ import (
 
 func init() {
 	Describe("makengo.Task", func() {
-		
-		It("should add a new task", func(e Example) {
-			t.Task("NewTask", func() {})
-		})
 
-		It("should add dependencies to task", func(e Example) {
-			t.Task("TestTask1", func() {}).DependsOn("TestTask2")
-		})
+		It("should add a new task", func(e Example) { t.Task("NewTask", func() {}) })
+
+		It("should add dependencies to task", func(e Example) { t.Task("TestTask1", func() {}).DependsOn("TestTask2") })
 
 		It("should invoke a task", func(e Example) {
 			var value int = 0
 
-			t.Task("TestTask", func() { value = 1 }).Invoke()			
-			e.Value(value).Should(Be(1))			
+			t.Task("TestTask", func() { value = 1 }).Invoke()
+			e.Value(value).Should(Be(1))
 		})
 
 		It("should invoke a task with all its prerequisites", func(e Example) {
@@ -52,17 +48,17 @@ func init() {
 		It("should run tasks concurrently", func(e Example) {
 			var value string
 
-			t.Task("TestTask1", func() { 
+			t.Task("TestTask1", func() {
 				time.Sleep(1 * 1e9)
 				value += "foo"
 			})
 
-			t.Task("TestTask2", func() { 
+			t.Task("TestTask2", func() {
 				time.Sleep(0.5 * 1e9)
-				value += "bar" 
+				value += "bar"
 			})
-			
-			t.TaskManager.InvokeByName([]string { "TestTask1", "TestTask2" })
+
+			t.TaskManager.InvokeByName([]string{"TestTask1", "TestTask2"})
 
 			e.Value(value).Should(Be("barfoo"))
 		})
@@ -70,29 +66,26 @@ func init() {
 		It("should wait for dependencies to finish", func(e Example) {
 			var value string
 
-			t.Task("TestTask2", func() { 
+			t.Task("TestTask2", func() {
 				time.Sleep(1 * 1e9)
 				value += "foo"
 			})
 
-			t.Task("TestTask3", func() { 
+			t.Task("TestTask3", func() {
 				time.Sleep(0.5 * 1e9)
-				value += "bar" 
+				value += "bar"
 			})
 
 			t.Task("TestTask1", func() { value += "biz" }).DependsOn("TestTask2", "TestTask3").Invoke()
 			e.Value(value).Should(Be("barfoobiz"))
 		})
 
-		It("should not invoke the task if the block argument is nil", func(e Example) {
-			t.Task("TestTask", nil).Invoke()
-		})
+		It("should not invoke the task if the block argument is nil", func(e Example) { t.Task("TestTask", nil).Invoke() })
 
-		
 	})
 
 	Describe("makengo.Describe", func() {
-		
+
 		It("should associate the given description to the task", func(e Example) {
 
 			t.Describe("A nice task")
@@ -108,7 +101,7 @@ func init() {
 	})
 
 	Describe("makengo.Default", func() {
-		
+
 		It("should define a default task", func(e Example) {
 			t.Task("NewTask", func() {})
 			t.Default("NewTask")
@@ -116,6 +109,4 @@ func init() {
 
 	})
 
-
 }
-
