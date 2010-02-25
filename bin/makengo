@@ -5,6 +5,7 @@ while [ $# -ne 0 ]; do
     shift
     case $param in
         -I) lib=$1 ; libs="$libs -I$lib"; shift ;;
+	-f) makengofile=$1; shift;;
         *) files="$files $param"
     esac
 done
@@ -44,6 +45,8 @@ default_o()
 [ x$GC == 'x' ] && GC=${O}g
 [ x$LD == 'x' ] && LD=${O}l
 
+[ x$makengofile == 'x' ] && makengofile=Makengo
+
 create_main() {
     cat > _makengo_.go <<EOF
 package main
@@ -59,7 +62,7 @@ EOF
 }
 
 run() {
-    $GC -o _makengo_.$O $libs _makengo_.go Makengo\
+    $GC -o _makengo_.$O $libs _makengo_.go $makengofile\
         && $LD _makengo_.$O \
         && ./$O.out $files
 }
