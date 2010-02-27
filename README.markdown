@@ -34,7 +34,7 @@ or better to fork it and send me patches ;)
     Desc("Print hello.")
     Task("Hello", func() { fmt.Println("Hello!") })
 
-## Define a default task among a set of defined tasks (not yet implemented)
+## Define a default task among a set of defined tasks
 
     Task("Hello", func() { fmt.Println("Hello!") })
     Default("Hello")
