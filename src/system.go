@@ -38,7 +38,7 @@ func run(argv []string, stdin, stdout, stderr int) (out string, err os.Error) {
 
 	var cmd *exec.Cmd
 
-	cmd, err = exec.Run(argv[0], argv, os.Environ(), stdin, stdout, stderr)
+	cmd, err = exec.Run(argv[0], argv, os.Environ(), "", stdin, stdout, stderr)
 
 	if err != nil {
 		goto Error
