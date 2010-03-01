@@ -16,7 +16,7 @@ func init() {
 		})
 
 		It("should raise errors", func(e Example) {
-			_, err := t.System("foobar!!!???")
+			_, err := t.System("foobar!!!???", exec.DevNull, exec.Pipe)
 			e.Value(err.String() != "").Should(Be(true))
 		})
 
