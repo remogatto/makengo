@@ -51,12 +51,10 @@ create_main() {
     cat > _makengo_.go <<EOF
 package main
 
-import "makengo"
-
-var runner = makengo.NewRunner()
+import . "makengo"
 
 func main() {
-    runner.Run()
+    Run()
 }
 EOF
 }

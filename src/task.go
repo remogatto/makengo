@@ -58,13 +58,11 @@ func init() { TaskManager = make(taskmanager) }
 
 func Desc(desc string) { lastDescription = desc }
 
-func Task(name string, block func()) *task {
-
-	t := &task{Name: name, block: block, Description: lastDescription}
+func Task(name string, block func()) (t *task) {
+	t = &task{Name: name, block: block, Description: lastDescription}
 	TaskManager[name] = t
 	lastDescription = ""
-
-	return t
+	return
 }
 
 func Default(name string) { Task("Default", nil).DependsOn(name) }

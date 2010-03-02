@@ -6,25 +6,16 @@ import (
 	"flag"
 )
 
-type runner struct {
-	usage func()
-}
+func Run() {
+	var help *bool = flag.Bool("h", false, "Show usage")
+	var showDescriptions *bool = flag.Bool("T", false, "Show task descriptions")
 
-func NewRunner() *runner {
-	custom_usage := func() {
+	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "makengo [options] targets...\n\n")
 		fmt.Fprintf(os.Stderr, "Options are:\n\n")
 		flag.PrintDefaults()
 	}
-
-	return &runner{usage: custom_usage}
-}
-
-func (self *runner) Run() {
-	var help *bool = flag.Bool("h", false, "Show usage")
-	var showDescriptions *bool = flag.Bool("T", false, "Show task descriptions")
-
-	flag.Usage = self.usage
+	
 	flag.Parse()
 
 	if *help == true {
