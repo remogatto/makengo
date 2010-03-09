@@ -15,7 +15,7 @@ func Run() {
 		fmt.Fprintf(os.Stderr, "Options are:\n\n")
 		flag.PrintDefaults()
 	}
-	
+
 	flag.Parse()
 
 	if *help == true {

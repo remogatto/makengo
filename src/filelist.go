@@ -8,17 +8,17 @@ import (
 )
 
 type fileList struct {
-	basePath string
-	pattern string
+	basePath  string
+	pattern   string
 	filenames vector.StringVector
-	Errors chan os.Error
-} 
-
-func FileList(basePath, pattern string) *fileList {
-	return &fileList { basePath: basePath, pattern: pattern, Errors: make(chan os.Error, 64) }
+	Errors    chan os.Error
 }
 
-func (self *fileList) ToSlice() []string  {
+func FileList(basePath, pattern string) *fileList {
+	return &fileList{basePath: basePath, pattern: pattern, Errors: make(chan os.Error, 64)}
+}
+
+func (self *fileList) ToSlice() []string {
 	path.Walk(self.basePath, self, self.Errors)
 	return self.filenames.Data()
 }
@@ -28,9 +28,8 @@ func (self *fileList) VisitDir(currpath string, d *os.Dir) bool {
 }
 
 func (self *fileList) VisitFile(currPath string, d *os.Dir) {
-	match,  _ := regexp.MatchString(self.pattern, currPath)
+	match, _ := regexp.MatchString(self.pattern, currPath)
 	if match {
 		self.filenames.Push(currPath)
 	}
 }
-

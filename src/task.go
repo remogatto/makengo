@@ -2,7 +2,6 @@ package makengo
 
 import (
 	"fmt"
-	"reflect"
 	"container/vector"
 )
 
@@ -11,7 +10,7 @@ type task struct {
 	Description string
 
 	block func()
-	deps  vector.Vector
+	deps  vector.StringVector
 }
 
 var TaskManager taskmanager
@@ -22,11 +21,10 @@ func (self *task) String() string {
 	return fmt.Sprintf("Task<name: %s, block: %s, deps: %s", self.Name, self.block, self.deps)
 }
 
-func (self *task) DependsOn(args ...) *task {
+func (self *task) DependsOn(args ...string) *task {
 
-	v := reflect.NewValue(args).(*reflect.StructValue)
-	for i := 0; i < v.NumField(); i++ {
-		self.deps.Push((v.Field(i)).(*reflect.StringValue).Get())
+	for _, taskname := range args {
+		self.deps.Push(taskname)
 	}
 
 	return self
