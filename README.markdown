@@ -1,4 +1,4 @@
-<tt>Makengo</tt> (make'n go) is a build program written in <tt>go</tt>
+<tt>Makengo</tt> (make'n'go) is a build program written in <tt>go</tt>
 and inspired to <tt>ruby</tt> <tt>rake</tt>.
 
 # Preamble
