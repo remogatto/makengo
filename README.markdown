@@ -70,8 +70,7 @@ Tasks are invoked using makengo executable:
 
 # Concurrency
 
-I desired to look at one of go's neatest feature: goroutines. Concurrency 
-is exploited following these rules:
+In makengo, Go concurrency is exploited following these rules:
 
 1. Independent tasks run concurrently. 
 
