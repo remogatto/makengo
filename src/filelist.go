@@ -23,11 +23,11 @@ func (self *fileList) ToSlice() []string {
 	return self.filenames.Data()
 }
 
-func (self *fileList) VisitDir(currpath string, d *os.Dir) bool {
+func (self *fileList) VisitDir(currpath string, d *os.FileInfo) bool {
 	return true
 }
 
-func (self *fileList) VisitFile(currPath string, d *os.Dir) {
+func (self *fileList) VisitFile(currPath string, d *os.FileInfo) {
 	match, _ := regexp.MatchString(self.pattern, currPath)
 	if match {
 		self.filenames.Push(currPath)

@@ -34,9 +34,9 @@ func (self *task) Invoke() *task {
 
 	ok := make(chan bool)
 
-	self.deps.Do(func(el interface{}) {
+	self.deps.Do(func(el string) {
 		go func() {
-			TaskManager.InvokeByName([]string{el.(string)})
+			TaskManager.InvokeByName([]string{el})
 			ok <- true
 		}()
 	})
