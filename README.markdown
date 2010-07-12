@@ -85,7 +85,7 @@ Special thanks to
 * Nicolas Sebrecht for bug reports, feedback and a lesson about git-am ;)
 
 * The Go mailing list for an useful
-  [discussion](http://tinyurl.com/38crfo) about Go and DSLs
+  [discussion](http://tinyurl.com/38crfo9) about Go and DSLs
 
 # LICENSE
 
