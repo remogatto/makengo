@@ -20,7 +20,7 @@ func FileList(basePath, pattern string) *fileList {
 
 func (self *fileList) ToSlice() []string {
 	path.Walk(self.basePath, self, self.Errors)
-	return self.filenames.Data()
+	return self.filenames.Copy()
 }
 
 func (self *fileList) VisitDir(currpath string, d *os.FileInfo) bool {
